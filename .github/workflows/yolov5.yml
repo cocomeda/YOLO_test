@@ -24,4 +24,5 @@ jobs:
 
     - name: Run YOLOv5 inference
       run: |
-        python detect.py
+        python detect.py --weights yolov5s.pt --source path/to/input/image.jpg
+
