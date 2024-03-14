@@ -217,7 +217,7 @@ def run(
 
                     class_str = ", ".join([names[int(cls)] for *xyxy, conf, cls in reversed(det)])
                     conf_str = ", ".join([names[int(conf)] for *xyxy, conf, cls in reversed(det)])
-                    xyxy_str = ", ".join([names[int(xyxy)] for *xyxy, conf, cls in reversed(det)])
+                    xyxy_str = ", ".join([f"{int(xyxy[0])}, {int(xyxy[1])}, {int(xyxy[2])}, {int(xyxy[3])}" for xyxy, conf, cls in reversed(det)])
 
                     if save_csv:
                         write_to_csv(p.name, label, confidence_str)
