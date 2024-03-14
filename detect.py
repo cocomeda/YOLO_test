@@ -214,7 +214,9 @@ def run(
                     confidence_str = f"{confidence:.2f}"
 
                     print(f"Class: {label}, Confidence: {confidence_str}, Bounding Box: {xyxy}")
+                    
                     class_str = ", ".join([names[int(cls)] for *xyxy, conf, cls in reversed(det)])
+                    
                     if save_csv:
                         write_to_csv(p.name, label, confidence_str)
 
@@ -231,11 +233,11 @@ def run(
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / "crops" / names[c] / f"{p.stem}.jpg", BGR=True)
 
-                    url = "https://script.google.com/macros/s/AKfycbyBqaU54nS85xyTQWR5yWTF2otlZnmJjGmVjR71cK1dOJ6YUX9ulp4-aG-B_WVbWO_cyQ/exec"
-                    # JSON形式でデータを用意してdataに格納
-                    data = {"class": class_str, "confidence": class_str, "bounding_box": class_str}
-                    # json.dumpでデータをJSON形式として扱う
-                    r = requests.post(url, data=json.dumps(data))
+                url = "https://script.google.com/macros/s/AKfycbyBqaU54nS85xyTQWR5yWTF2otlZnmJjGmVjR71cK1dOJ6YUX9ulp4-aG-B_WVbWO_cyQ/exec"
+                # JSON形式でデータを用意してdataに格納
+                data = {"class": class_str, "confidence": class_str, "bounding_box": class_str}
+                # json.dumpでデータをJSON形式として扱う
+                r = requests.post(url, data=json.dumps(data))
 
             # Stream results
             im0 = annotator.result()
