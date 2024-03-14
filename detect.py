@@ -28,15 +28,9 @@ Usage - formats:
                                  yolov5s_paddle_model       # PaddlePaddle
 """
 
-
-
 import json
 import requests
 import time
-
-
-
-
 
 
 import argparse
@@ -73,15 +67,7 @@ from utils.general import (
     scale_boxes,
     strip_optimizer,
     xyxy2xywh,
-
-
 )
-
-
-
-
-
-
 
 
 from utils.torch_utils import select_device, smart_inference_mode
@@ -118,16 +104,6 @@ def run(
     dnn=False,  # use OpenCV DNN for ONNX inference
     vid_stride=1,  # video frame-rate stride
 ):
-
-
-
-
-
-
-
-
-
-
     source = str(source)
     save_img = not nosave and not source.endswith(".txt")  # save inference images
     is_file = Path(source).suffix[1:] in (IMG_FORMATS + VID_FORMATS)
@@ -205,8 +181,6 @@ def run(
                     writer.writeheader()
                 writer.writerow(data)
 
-
-
         # Process predictions
         for i, det in enumerate(pred):  # per image
             seen += 1
@@ -232,34 +206,21 @@ def run(
                     n = (det[:, 5] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
-
-
-
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
-                       
                     c = int(cls)  # integer class
                     label = names[c] if hide_conf else f"{names[c]}"
                     confidence = float(conf)
                     confidence_str = f"{confidence:.2f}"
-
-
 
                     print(f"Class: {label}, Confidence: {confidence_str}, Bounding Box: {xyxy}")
 
                     url = "https://script.google.com/macros/s/AKfycbx0TTHh88dW9R3wwzISZWUcHiOHcS1p58obwi2dn6yIkkNHQ_3wzomPfjeqxYwGoWDgMQ/exec"
 
                     # JSON形式でデータを用意してdataに格納
-                    data = {
-                    "class": label,
-                    "confidence": confidence_str,
-                    "bounding_box" : str(xyxy)
-                    }
+                    data = {"class": label, "confidence": confidence_str, "bounding_box": str(xyxy)}
                     # json.dumpでデータをJSON形式として扱う
                     r = requests.post(url, data=json.dumps(data))
-
-  
-
 
                     if save_csv:
                         write_to_csv(p.name, label, confidence_str)
@@ -320,25 +281,6 @@ def run(
         strip_optimizer(weights[0])  # update model (to fix SourceChangeWarning)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def parse_opt():
     """Parses command-line arguments for YOLOv5 detection, setting inference options and model configurations."""
     parser = argparse.ArgumentParser()
@@ -376,17 +318,12 @@ def parse_opt():
     return opt
 
 
-
 def main(opt):
     """Executes YOLOv5 model inference with given options, checking requirements before running the model."""
     check_requirements(ROOT / "requirements.txt", exclude=("tensorboard", "thop"))
     run(**vars(opt))
 
 
-
 if __name__ == "__main__":
     opt = parse_opt()
     main(opt)
-
-
-
