@@ -215,7 +215,13 @@ def run(
 
                     print(f"Class: {label}, Confidence: {confidence_str}, Bounding Box: {xyxy}")
 
-                    url = "https://script.google.com/macros/s/AKfycbx0TTHh88dW9R3wwzISZWUcHiOHcS1p58obwi2dn6yIkkNHQ_3wzomPfjeqxYwGoWDgMQ/exec"
+
+
+
+
+                   
+                    # url = "https://script.google.com/macros/s/AKfycbx0TTHh88dW9R3wwzISZWUcHiOHcS1p58obwi2dn6yIkkNHQ_3wzomPfjeqxYwGoWDgMQ/exec"
+ 　　　　　　　　　　url = " https://script.google.com/macros/s/AKfycbyBqaU54nS85xyTQWR5yWTF2otlZnmJjGmVjR71cK1dOJ6YUX9ulp4-aG-B_WVbWO_cyQ/exec"
 
                     # JSON形式でデータを用意してdataに格納
                     data = {"class": label, "confidence": confidence_str, "bounding_box": str(xyxy)}
@@ -237,6 +243,7 @@ def run(
                         annotator.box_label(xyxy, label, color=colors(c, True))
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / "crops" / names[c] / f"{p.stem}.jpg", BGR=True)
+                        
 
             # Stream results
             im0 = annotator.result()
