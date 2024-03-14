@@ -214,9 +214,9 @@ def run(
                     confidence_str = f"{confidence:.2f}"
 
                     print(f"Class: {label}, Confidence: {confidence_str}, Bounding Box: {xyxy}")
-                    
+
                     class_str = ", ".join([names[int(cls)] for *xyxy, conf, cls in reversed(det)])
-                    
+
                     if save_csv:
                         write_to_csv(p.name, label, confidence_str)
 
