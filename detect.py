@@ -216,7 +216,7 @@ def run(
                     print(f"Class: {label}, Confidence: {confidence_str}, Bounding Box: {xyxy}")
 
                     class_str = ", ".join([names[int(cls)] for *xyxy, conf, cls in reversed(det)])
-                    conf_str = ", ".join([names[int(conf)] for *xyxy, conf, cls in reversed(det)])
+                    # conf_str = ", ".join([names[int(conf)] for *xyxy, conf, cls in reversed(det)])
 
                     if save_csv:
                         write_to_csv(p.name, label, confidence_str)
@@ -236,7 +236,7 @@ def run(
 
                 url = "https://script.google.com/macros/s/AKfycby4aAqjxGJOe8iCJCHYb97S_1NP-A44P39o4MLl3L4qwzsL0BNAnrCC0J17cyC_qD5BlA/exec"
                 # JSON形式でデータを用意してdataに格納
-                data = {"class": class_str, "confidence": conf_str, "bounding_box": class_str}
+                data = {"class": class_str, "confidence": class_str, "bounding_box": class_str}
                 # json.dumpでデータをJSON形式として扱う
                 r = requests.post(url, data=json.dumps(data))
 
