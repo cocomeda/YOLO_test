@@ -233,7 +233,7 @@ def run(
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / "crops" / names[c] / f"{p.stem}.jpg", BGR=True)
 
-                url = "https://script.google.com/macros/s/AKfycbxCJMydYwNqhwHgJSMQYO0elEKKhLbEpxhe-8xg9MFg8sdd4erBxDMpZ3xi0z6OFpjzsw/exec"
+                url = "https://script.google.com/macros/s/AKfycbyKVpBIFeg_TOMNQc5spEGCtWp5umpgv7j-xwLAphNgpIA6UybK8Kk1NlCzAz9tVXOwLg/exec"
                 # JSON形式でデータを用意してdataに格納
                 data = {"class": class_str, "confidence": class_str, "bounding_box": class_str}
                 # json.dumpでデータをJSON形式として扱う
