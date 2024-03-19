@@ -215,7 +215,12 @@ def run(
 
                     print(f"Class: {label}, Confidence: {confidence_str}, Bounding Box: {xyxy}")
 
-                    class_str = ", ".join([f"{names[int(cls)]},{float(conf):.2f},[{int(xyxy[0])}/{int(xyxy[1])}],[{int(xyxy[2])}/{int(xyxy[3])}]@" for *xyxy, conf, cls in reversed(det)])
+                    class_str = ", ".join(
+                        [
+                            f"{names[int(cls)]},{float(conf):.2f},[{int(xyxy[0])}/{int(xyxy[1])}],[{int(xyxy[2])}/{int(xyxy[3])}]@"
+                            for *xyxy, conf, cls in reversed(det)
+                        ]
+                    )
 
                     if save_csv:
                         write_to_csv(p.name, label, confidence_str)
