@@ -29,6 +29,7 @@ Usage - formats:
 """
 
 import pathlib
+
 pathlib.PosixPath = pathlib.WindowsPath
 
 
