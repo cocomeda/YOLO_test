@@ -28,6 +28,10 @@ Usage - formats:
                                  yolov5s_paddle_model       # PaddlePaddle
 """
 
+import pathlib
+pathlib.PosixPath = pathlib.WindowsPath
+
+
 import json
 import requests
 import time
