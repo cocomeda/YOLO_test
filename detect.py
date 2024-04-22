@@ -28,18 +28,16 @@ Usage - formats:
                                  yolov5s_paddle_model       # PaddlePaddle
 """
 
-import json
-import requests
-import time
-
-
 import argparse
 import csv
+import json
 import os
 import platform
 import sys
+import time
 from pathlib import Path
 
+import requests
 import torch
 
 FILE = Path(__file__).resolve()
@@ -68,8 +66,6 @@ from utils.general import (
     strip_optimizer,
     xyxy2xywh,
 )
-
-
 from utils.torch_utils import select_device, smart_inference_mode
 
 
