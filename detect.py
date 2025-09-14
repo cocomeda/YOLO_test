@@ -34,7 +34,6 @@ import json
 import os
 import platform
 import sys
-import time
 from pathlib import Path
 
 import requests
